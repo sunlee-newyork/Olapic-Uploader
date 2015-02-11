@@ -1,101 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        input, body {
-            font-family: monospace;
-        }
-        form input[type=text] {
-            width: 400px;
-            margin: 5px;
-            padding: 2px;
-        }
-        label {
-            width: 120px;
-            display: inline-block;
-        }
-        .submit {
-            margin-top: 20px;
-        }
-        .response {
-            margin-top: 20px;
-            width: 100%;
-            height: 100px;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="index.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            $('.submit').click(function (e) {
-
-                var host         = "https://rest.photorank.me/";
-                var authToken    = "0d6cdd1af34742c3855139fce0780fd1f93d1a7ba1a2c6a495bdb2d9031ec2c3";
-                var version      = "v2.2";
-
-                var imageFile    = $('.image-file')[0].files[0];
-                var caption      = $('.caption').val();
-                var streamURI    = [];
-                
-                // $('.stream-uri').each(function () {
-                    
-                // });
-
-                $.ajax({
-
-                    // type: "GET",
-                    type: "POST",
-
-                    // url: host + '?auth_token=' + authToken + '&version=' + version,
-                    url: host + 'users' + '?auth_token=' + authToken + '&version=' + version,
-                    data: {
-                        'email': 'sun@olapic.com',
-                        'screen_name': 'Sun Lee'
-                    },
-                    
-                    success: function (data) {
-                        console.log("Data: ", data);
-                        $('.response').html(JSON.stringify(data));
-
-                        // $.ajax({
-
-                        //     type: "POST",
-                        //     url: host + 'users' + '?auth_token=' + authToken + '&name=Sun Lee' + '&email=sun%40olapic.com' + '&version=' + version,
-
-                        //     success: function (response) {
-                        //         console.log(response);
-                        //     },
-
-                        //     error: function (err) {
-                        //         console.log(err);
-                        //     }
-
-                        // });
-                    },
-
-                    error: function (err) {
-                        console.log("Error: ", err);
-                    }
-
-                });
-
-            });
-
-        });
-
-    </script>
+    <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
 
-    <div><label>Select image:</label><input class="image-file" type="file" name="image"></div>
+    <div class="form-wrapper">
 
-    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148640564"></div>
-    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148625099"></div>
+        <div class="user-form">
+            <div class="container">
+                <h2>User Form</h2>
+                <div><label>User email: </label><input class="user-email" type="text" value="sun@email.com" placeholder="user@email.com" name="email"></div>
+                <div><label>User screenname: </label><input class="user-name" type="text" value="Sun Lee" placeholder="User screen_name" name="screen_name"></div>
+                <div><label>User avatar URL: </label><input class="user-avatar" type="text" value="http://www.assemblergames.com/forums/avatars7/avatar74560_2.gif" placeholder="http://www.assemblergames.com/forums/avatars7/avatar74560_2.gif" name="avatar_url"></div>
+            </div>
+        </div>
 
-    <div><label>Caption: </label><input class="caption" type="text" name="caption" value="test caption"></div>
+        <div class="image-form">
+            <div class="container">
+                <h2>Image Form</h2>
+                <div><label>Select image:</label><input class="image-file" type="file" name="image" ></div>
+                <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148640564"></div>
+                <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148625099"></div>
+                <div><label>Caption: </label><input class="caption" type="text" name="caption" value="test caption"></div>
+            </div>
+        </div>
 
-    <div><label></label><input class="submit" type="submit" value="Upload Image" name="submit"></div>
+    </div>
+
+    <div class="submit"><input type="submit" value="Upload Image" name="submit"></div>
 
     <div class="response"></div>
 
