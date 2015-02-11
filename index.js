@@ -4,8 +4,8 @@ $(document).ready(function () {
 
         // Default values
         var host       = "https://rest.photorank.me/";
-        var authToken  = "0d6cdd1af34742c3855139fce0780fd1f93d1a7ba1a2c6a495bdb2d9031ec2c3";
         var version    = "v2.2";
+        var authToken  = $('.olapic-apikey').val();
 
         // User values
         var userEmail  = $('.user-email').val();
@@ -23,11 +23,12 @@ $(document).ready(function () {
             type: "POST",
             url: host + 'users' + '?auth_token=' + authToken + '&version=' + version,
             data: {
-                'email'      : 'sun@olapic.com',
-                'screen_name': 'Sun Lee'
+                'email'      : userEmail,
+                'screen_name': userName,
+                'avatar_url' : userAvatar
             },
             success: function (response) {
-                $('.response').append("Successfully made first call: \n" + JSON.stringify(response, null, 4));
+                $('.response').append("<p>Successfully made first call: </p>" + JSON.stringify(response));
                 
                 var userID = response.data.id;
 
@@ -42,7 +43,7 @@ $(document).ready(function () {
 
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState==4 && xhr.status==200) {
-                        $('.response').append("\nImage POST Success: " + xhr.responseText);
+                        $('.response').append("<p>Image POST Success: </p>" + xhr.responseText);
                     }
                 }
 
