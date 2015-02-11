@@ -12,7 +12,7 @@
         <div class="customer-form">
             <div class="container">
                 <h2>Olapic User Form</h2>
-                <div><label>API key: </label><input class="olapic-apikey" type="text" value="0d6cdd1af34742c3855139fce0780fd1f93d1a7ba1a2c6a495bdb2d9031ec2c3"></div>
+                <div><label>API key: </label><input class="olapic-apikey" type="text" value=""></div>
             </div>
         </div>
 
@@ -30,8 +30,8 @@
                 <h2>Image Form</h2>
                 <form id="form" method="post" enctype="multipart/form-data">
                     <div><label>Select image:</label><input class="image-file" type="file" name="image" ></div>
-                    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148640564"></div>
-                    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148625099"></div>
+                    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/{olapic_stream_id}"></div>
+                    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/{olapic_stream_id}"></div>
                     <div><label>Caption: </label><input class="caption" type="text" name="caption" value="test caption"></div>
                 </form>
             </div>
