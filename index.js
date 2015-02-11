@@ -17,6 +17,7 @@ $(document).ready(function () {
         
         if (!imageFile) {
             alert('Please select a file first!');
+            return false;
         }
 
         else {
