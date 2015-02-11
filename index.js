@@ -11,21 +11,14 @@ $(document).ready(function () {
         var userEmail  = $('.user-email').val();
         var userName   = $('.user-name').val();
         var userAvatar = $('.user-avatar').val();
-        var userID = '';
 
-        $('.response').append(userName);
-
-        // Image file values
+        // Grab file
         var imageFile  = $('.image-file')[0].files[0];
-        var caption    = $('.caption').val();
-        var streamURIs = [];
-        
-        $('.stream-uri').each(function () {
-            streamURIs.push(this.value);
-        });
+        if (!imageFile) {
+            alert('Please select a file first!');
+        }
 
-        $('.response').append(imageFile, streamURIs);
-
+        // Make first request with jQuery AJAX
         $.ajax({
             type: "POST",
             url: host + 'users' + '?auth_token=' + authToken + '&version=' + version,
@@ -34,25 +27,24 @@ $(document).ready(function () {
                 'screen_name': 'Sun Lee'
             },
             success: function (response) {
-                $('.response').append(JSON.stringify(response));
-                userID = response.data.id;
+                $('.response').append("Successfully made first call: \n" + JSON.stringify(response, null, 4));
+                
+                var userID = response.data.id;
 
-                $.ajax({
-                    type: "POST",
-                    contentType: "multipart/form-data;",
-                    url: host + 'users/' + userID + '/media' + '?auth_token=' + authToken + '&version=' + version,
-                    data: {
-                        'image'       : imageFile,                                
-                        'caption'     : caption,
-                        'stream_uri'  : streamURIs
-                    },
-                    success: function (response) {
-                        $('.response').append(response);
-                    },
-                    error: function (err) {
-                        $('.response').append(err);
+                // Workaround jQuery file POST using XMLHttpRequest
+                var mediaUploadURL = host + 'users/' + userID + '/media' + '?auth_token=' + authToken + '&version=' + version;
+                var form = document.getElementById('form');
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('POST', mediaUploadURL, true);
+                xhr.send(formData);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState==4 && xhr.status==200) {
+                        $('.response').append("\nImage POST Success: " + xhr.responseText);
                     }
-                });
+                }
 
             },
             error: function (err) {

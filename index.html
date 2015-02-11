@@ -21,10 +21,12 @@
         <div class="image-form">
             <div class="container">
                 <h2>Image Form</h2>
-                <div><label>Select image:</label><input class="image-file" type="file" name="image" ></div>
-                <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148640564"></div>
-                <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148625099"></div>
-                <div><label>Caption: </label><input class="caption" type="text" name="caption" value="test caption"></div>
+                <form id="form" method="post" enctype="multipart/form-data">
+                    <div><label>Select image:</label><input class="image-file" type="file" name="image" ></div>
+                    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148640564"></div>
+                    <div><label>Stream URI: </label><input class="stream-uri" type="text" name="stream_uri[]" value="/streams/2148625099"></div>
+                    <div><label>Caption: </label><input class="caption" type="text" name="caption" value="test caption"></div>
+                </form>
             </div>
         </div>
 
