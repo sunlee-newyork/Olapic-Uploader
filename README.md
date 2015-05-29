@@ -1,5 +1,5 @@
-# Olapic L'Oreal Uploader Demo
+# Olapic Uploader Demo
 
 git branch gh-pages
 
-sunlee-newyork.github.io/loreal-demo
+sunlee-newyork.github.io/Olapic-Uploader
