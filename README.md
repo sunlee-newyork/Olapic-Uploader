@@ -1,5 +1,4 @@
 # Olapic Uploader Demo
 
-git branch gh-pages
-
+Viewable at:
 sunlee-newyork.github.io/Olapic-Uploader
